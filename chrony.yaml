@@ -1,0 +1,29 @@
+document: modulemd
+version: 1
+data:
+    summary: A minimal chrony module
+    description: An minimal chrony module - a Network Time Protocol Server
+    license:
+        module: [ MIT ]
+    dependencies:
+        buildrequires:
+            base-runtime: master
+        requires:
+            base-runtime: master
+    references:
+        community: https://fedoraproject.org/wiki/Modularity
+        documentation: https://github.com/container-images/chronyd
+        tracker: https://github.com/container-images/chronyd
+    profiles:
+        default:
+            rpms:
+                - chrony
+    api:
+        rpms:
+            - chrony
+    components:
+        rpms:
+            # TBD: more packages
+            chrony:
+                rationale: Provides API for this module.
+                ref: f25

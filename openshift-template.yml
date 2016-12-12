@@ -1,0 +1,62 @@
+---
+kind: Template
+apiVersion: v1
+metadata:
+  name: chrony-container
+  annotations:
+    description: a chrony container
+    tags: chrony
+labels:
+  template: chrony
+  group: chrony
+  version: 1.0.0
+objects:
+- kind: ImageStream
+  apiVersion: v1
+  metadata:
+    name: "chrony-container"
+  spec:
+    dockerImageRepository: "karsten/chrony-container"
+  tags:
+    - name: "latest"
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: "chrony-container"
+  spec:
+    selector:
+      name: "chrony-container"
+    strategy:
+      type: "Rolling"
+    triggers:
+      - type: "ImageChange"
+        imageChangeParams:
+          automatic: true
+          containerNames:
+            - "chrony-container"
+          from:
+            kind: "ImageStreamTag"
+            name: "chrony-container:latest"
+    replicas: 1
+    template:
+      metadata:
+        name: "chrony-container"
+        labels:
+          name: "chrony-container"
+      spec:
+        containers:
+          - name: "chrony-container"
+            image: "chrony-container:latest"
+            ports:
+              - containerPort: 25
+            volumeMounts:
+            #  - mountPath: /var/proftpd-container
+            #    name: var
+              - mountPath: /home/karsten
+                name: data
+        volumes:
+        #  - name: var
+        #    emptyDir:
+        #      medium: Memory
+          - name: data
+            emptyDir: {}
