@@ -23,4 +23,4 @@ runfg: build
 	docker run --net=host -it --cap-add SYS_TIME $(IMAGE_NAME)
 
 test:
-	run_test.sh
+	./run_test.sh

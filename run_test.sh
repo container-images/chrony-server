@@ -1,5 +1,5 @@
 #!/bin/bash
-ntpq -c "host 127.0.0.1" -pn
+chronyc sources 2>&1  > /dev/null
 
 result=$?
 if [ $result -eq 0 ]; then
