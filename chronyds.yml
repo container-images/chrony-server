@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: chronyds
+spec:
+  template:
+    metadata:
+      labels:
+        name: chronyds
+    spec:
+      hostNetwork: true
+      containers:
+      - name: chronydsclient
+        image: docker.io/khopp/chronyclient
+        ports:
+        - name: ntpport
+          containerPort: 123
+          hostPort: 123
+          protocol: udp
+        command: [ "/usr/sbin/chronyd", "-d" ]
+        resources:
+          requests:
+            cpu: 0.2
+            memory: 256
+        securityContext:
+          privileged: true
