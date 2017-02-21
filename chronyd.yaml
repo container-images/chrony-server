@@ -2,7 +2,7 @@ document: modulemd
 version: 1
 data:
     summary: A minimal chrony module
-    description: An minimal chrony module - a Network Time Protocol Server
+    description: An minimal chrony module - a Network Time Protocol Server.
     license:
         module: [ MIT ]
     dependencies:
@@ -23,7 +23,12 @@ data:
             - chrony
     components:
         rpms:
-            # TBD: more packages
             chrony:
                 rationale: Provides API for this module.
+                ref: f25
+            generic-release:
+                rationale: requirement for chrony.
+                ref: f25
+            libedit:
+                rationale: requirement for chrony.
                 ref: f25
