@@ -1,16 +1,17 @@
+---
 apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
-  name: chronyds
+  name: chrony-daemonset
 spec:
   template:
     metadata:
       labels:
-        name: chronyds
+        name: chrony-daemonset
     spec:
       hostNetwork: true
       containers:
-      - name: chronydsclient
+      - name: chronyds
         image: docker.io/khopp/chronyclient
         ports:
         - name: ntpport
