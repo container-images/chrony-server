@@ -1,4 +1,4 @@
-FROM fedora:f25
+FROM fedora:25
 
 MAINTAINER Karsten Hopp, Red Hat <karsten@redhat.com>
 LABEL name="chronyd container" \
@@ -16,10 +16,9 @@ RUN dnf install -y chrony && \
  sed -i "s/^pool/#pool/g" /etc/chrony.conf && \
  sed -i "s/^server/#server/g" /etc/chrony.conf && \
  echo "allow all" >> /etc/chrony.conf && \
- echo "port 12312" >> /etc/chrony.conf && \
  dnf clean all
 
-USER root
+USER 0
 CMD ["/usr/sbin/chronyd","-d"]
 
-EXPOSE 12312
+EXPOSE 123
