@@ -36,3 +36,32 @@ Commands for testing chrony docker container:
 
 replace localhost with container IP if required
 
+
+## Running on OpenShift 
+This container requires root in order to run chronyd as chronyd checks for the user ID.
+It also requires the SYS_TIME capability.
+The required steps are:
+```
+oadm policy add-scc-to-user anyuid -z default
+oc edit scc anyuid
+```
+An editor terminal will open after the last command.
+Search for
+```
+allowedCapabilities: null
+```
+and replace it with
+```
+allowedCapabilities:
+- SYS_TIME
+```
+and
+```
+defaultAddCapabilities: null
+```
+with
+```
+defaultAddCapabilities:
+- SYS_TIME
+```
+Save and exit the editor and then deploy the container.
