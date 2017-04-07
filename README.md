@@ -1,6 +1,14 @@
 # chrony
 Network Time Protocol Server Container
 
+## Dependencies
+
+To build the chrony container, some components are required that aren't in the
+Base Runtime image.
+
+### Build Dependencies
+
+* pps-tools
 
 ## How to build the container
 
