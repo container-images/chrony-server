@@ -1,4 +1,4 @@
-FROM modularitycontainers/boltron-preview:latest
+FROM registry.fedoraproject.org/f26-modular/boltron
 
 # This is a container for minimal chrony module - a Network Time Protocol Server.
 #
