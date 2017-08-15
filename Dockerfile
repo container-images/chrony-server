@@ -27,7 +27,7 @@ LABEL summary="A minimal chrony module" \
       io.openshift.expose-services="123" \
       io.openshift.tags="ntp, chronyd, time"
 
-RUN dnf install -y --nodocs chrony && \
+RUN dnf install -y --nodocs --rpm chrony && \
  dnf -y clean all
 
 # Specify it during `docker run` as parameter: "-p <host_port>:<container_port>"
